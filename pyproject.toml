@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "comfyui-sugarcubes"
+description = "Composable workflow units for ComfyUI."
+version = "0.9.0"
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+classifiers = [
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "aiohttp",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black",
+    "pytest",
+    "ruff",
+]
+
+[tool.comfy]
+PublisherId = "artificialsweetener"
+DisplayName = "SugarCubes"
+Icon = ""
+includes = []
+
+[tool.setuptools]
+py-modules = ["nodes", "payloads"]
+
+[tool.setuptools.packages.find]
+include = [
+    "backend*",
+    "cube_model*",
+    "exporter*",
+    "importer*",
+    "instrumentation*",
+    "runtime*",
+]
