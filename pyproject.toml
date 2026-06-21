@@ -3,7 +3,7 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "comfyui-sugarcubes"
+name = "SugarCubes"
 description = "Composable workflow units for ComfyUI."
 version = "0.9.0"
 license = "AGPL-3.0-or-later"
@@ -15,6 +15,10 @@ classifiers = [
 dependencies = [
     "aiohttp",
 ]
+
+[project.urls]
+Repository = "https://github.com/Artificial-Sweetener/SugarCubes"
+"Bug Tracker" = "https://github.com/Artificial-Sweetener/SugarCubes/issues"
 
 [project.optional-dependencies]
 dev = [
@@ -41,3 +45,6 @@ include = [
     "instrumentation*",
     "runtime*",
 ]
+
+[tool.black]
+target-version = ["py312"]

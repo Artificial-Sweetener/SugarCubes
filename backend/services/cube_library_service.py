@@ -157,9 +157,7 @@ _ASCII_WORD_RE = re.compile(r"[A-Za-z]+")
 _VERSION_TOKEN_RE = re.compile(r"v[0-9]+(?:[A-Za-z0-9.-]*)?$", re.IGNORECASE)
 _EXCLUDED_CUSTOM_NODE_SLUGS = frozenset({"websocket_image_save"})
 _BUILT_IN_CUSTOM_NODE_IDS = frozenset({"comfy-core"})
-_SUGARCUBES_CUSTOM_NODE_IDS = frozenset(
-    {"sugarcubes", "comfyui-sugarcubes", "comfyui_sugarcubes"}
-)
+_SUGARCUBES_CUSTOM_NODE_IDS = frozenset({"sugarcubes"})
 _SUGARCUBES_MARKER_MODULES = frozenset({"nodes", "payloads"})
 _DEFAULT_BASE_REPO_REF = "Artificial-Sweetener/Base-Cubes"
 _CURRENT_REVISION_REF = "WORKTREE"
@@ -1098,7 +1096,7 @@ class CubeLibraryService:
         return {
             "schemaVersion": 1,
             "available": available,
-            "source": "comfyui-sugarcubes",
+            "source": "SugarCubes",
             "sugarCubesVersion": _runtime_version(),
             "catalogRevision": catalog_revision,
             "packManagementSupported": available,

@@ -37,7 +37,6 @@ from typing import (
     Tuple,
 )
 
-
 MARKER_CLASS_TYPES = {
     "SugarCubes.CubeInput": "input",
     "SugarCubes.CubeOutput": "output",

@@ -33,7 +33,6 @@ from conftest import (
     ensure_tracked_repo,
 )
 
-
 CANONICAL_CUBE_ID = "Artificial-Sweetener/Base-Cubes/demo.cube"
 
 
@@ -1338,9 +1337,8 @@ def test_save_many_persists_to_managed_local_workspace(
 
     assert response.status == 200
     assert payload["saved"][0]["cube_id"] == local_cube_id
-    assert payload["saved"][0]["path"].endswith(
-        ".sugarcubes\\local\\example-user\\private\\demo.cube"
-    )
+    saved_path = payload["saved"][0]["path"].replace("\\", "/")
+    assert saved_path.endswith(".sugarcubes/local/example-user/private/demo.cube")
 
 
 def test_save_many_commits_same_version_changed_local_cube(

@@ -27,7 +27,6 @@ from sugarcubes.backend.services.cube_library_service import (
     compute_cube_content_hash_bytes,
 )
 
-
 CANONICAL_CUBE_ID = "Artificial-Sweetener/Base-Cubes/demo.cube"
 SDXL_CUBE_ID = "Artificial-Sweetener/Base-Cubes/SDXL/demo.cube"
 
@@ -370,7 +369,10 @@ def test_backend_loads_cube_artifact_by_revision_ref(
         "Artificial-Sweetener", "Base-Cubes"
     )
     (checkout / ".git").mkdir(parents=True)
-    _write_cube(checkout / "demo.cube", _cube_payload(version="1.0.0"))
+    _write_cube(
+        checkout / "demo.cube",
+        _cube_payload(version="1.0.0", default_alias="current"),
+    )
 
     artifact = services.library.load_library_cube_ref(
         cube_id=CANONICAL_CUBE_ID,
@@ -440,7 +442,10 @@ def test_backend_loads_current_artifact_for_duplicate_current_version(
         "Artificial-Sweetener", "Base-Cubes"
     )
     (checkout / ".git").mkdir(parents=True)
-    _write_cube(checkout / "demo.cube", _cube_payload(version="1.0.0"))
+    _write_cube(
+        checkout / "demo.cube",
+        _cube_payload(version="1.0.0", default_alias="current"),
+    )
 
     artifact = services.library.load_library_cube_version(
         cube_id=CANONICAL_CUBE_ID,

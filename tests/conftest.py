@@ -21,7 +21,6 @@ from types import SimpleNamespace
 
 import pytest
 
-
 ROOT = Path(__file__).resolve().parents[1]
 
 if "sugarcubes" not in sys.modules:
@@ -172,15 +171,17 @@ def backend_services_factory():
             identity_policy_service=identity,
         )
 
-        default_prepared = lambda loaded, drop_origin=(0.0, 0.0): SimpleNamespace(
-            nodes=[],
-            markers=[],
-            connections=[],
-            layout=None,
-            warnings=[],
-            cube={},
-            subgraphs=[],
-        )
+        def default_prepared(loaded, drop_origin=(0.0, 0.0)):
+            return SimpleNamespace(
+                nodes=[],
+                markers=[],
+                connections=[],
+                layout=None,
+                warnings=[],
+                cube={},
+                subgraphs=[],
+            )
+
         library = CubeLibraryService(
             extension_root,
             load_cube_artifact=load_cube_artifact or (lambda path: None),

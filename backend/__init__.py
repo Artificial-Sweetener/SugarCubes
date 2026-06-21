@@ -21,6 +21,7 @@ import importlib
 import importlib.metadata
 import logging
 import sys
+import tomllib
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Mapping, Optional
@@ -81,12 +82,26 @@ except ImportError:
     )
 
 _logger = logging.getLogger(__name__)
-_DISTRIBUTION_NAME = "comfyui-sugarcubes"
-_FALLBACK_VERSION = "0.9.0"
-try:
-    __version__ = importlib.metadata.version(_DISTRIBUTION_NAME)
-except importlib.metadata.PackageNotFoundError:
-    __version__ = _FALLBACK_VERSION
+_DISTRIBUTION_NAME = "SugarCubes"
+
+
+def _runtime_version() -> str:
+    """Return the installed SugarCubes version from canonical project metadata."""
+
+    pyproject_path = Path(__file__).resolve().parents[1] / "pyproject.toml"
+    if pyproject_path.exists():
+        metadata = tomllib.loads(pyproject_path.read_text(encoding="utf-8"))
+        version = metadata.get("project", {}).get("version")
+        if isinstance(version, str) and version.strip():
+            return version
+        raise RuntimeError("SugarCubes pyproject.toml does not define a version.")
+    try:
+        return importlib.metadata.version(_DISTRIBUTION_NAME)
+    except importlib.metadata.PackageNotFoundError:
+        raise RuntimeError("SugarCubes package metadata is unavailable.") from None
+
+
+__version__ = _runtime_version()
 
 
 @dataclass(frozen=True)

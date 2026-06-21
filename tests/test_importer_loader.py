@@ -14,7 +14,6 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import json
-from pathlib import Path
 
 import pytest
 
@@ -343,22 +342,30 @@ def test_load_cube_accepts_complete_nested_subgraph_definitions(tmp_path):
 
 
 def test_prepare_import_preserves_text_to_image_prompt_nodes(tmp_path):
-    source_path = (
-        Path(__file__).resolve().parents[1]
-        / ".sugarcubes"
-        / "Artificial-Sweetener"
-        / "Base-Cubes"
-        / "SDXL"
-        / "Text to Image.cube"
-    )
-    payload = json.loads(source_path.read_text(encoding="utf-8"))
+    payload = _build_current_payload()
     payload["cube_id"] = "Artificial-Sweetener/Base-Cubes/SDXL/Text to Image.cube"
     payload["version"] = "1.1.1"
-    groups = payload.get("implementation", {}).get("layout", {}).get("groups", [])
-    for group in groups:
-        sugarcubes = group.get("sugarcubes")
-        if isinstance(sugarcubes, dict):
-            sugarcubes["cube_id"] = payload["cube_id"]
+    payload["implementation"]["nodes"] = {
+        "positive_prompt": {
+            "class_type": "PrimitiveStringMultiline",
+            "inputs": {},
+        },
+        "negative_prompt": {
+            "class_type": "PrimitiveStringMultiline",
+            "inputs": {},
+        },
+        "prompt_encode_style": {
+            "class_type": "SimpleSyrup.PromptEncodeStyle",
+            "inputs": {
+                "positive": ["positive_prompt", 0],
+                "negative": ["negative_prompt", 0],
+            },
+        },
+    }
+    payload["implementation"]["definitions"] = {
+        "PrimitiveStringMultiline": {},
+        "SimpleSyrup.PromptEncodeStyle": {},
+    }
 
     cube_path = tmp_path / "text to image.cube"
     cube_path.write_text(json.dumps(payload), encoding="utf-8")

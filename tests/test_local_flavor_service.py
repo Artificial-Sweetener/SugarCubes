@@ -24,7 +24,6 @@ from sugarcubes.backend.responses import BackendError
 
 from conftest import FakeRequest, decode_json_response
 
-
 LOCAL_CUBE_ID = "local/personal/demo.cube"
 SURFACE_SIGNATURE = "surface-a"
 

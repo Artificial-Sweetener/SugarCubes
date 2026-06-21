@@ -50,7 +50,6 @@ from sugarcubes.backend.validation.request_parsers import (
 
 from conftest import FakeRequest, ensure_tracked_repo
 
-
 CANONICAL_CUBE_ID = "artificial-sweetener/base-cubes/automask detailer.cube"
 
 

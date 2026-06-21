@@ -27,16 +27,16 @@ describe("updateReleaseVersions", () => {
     rootPath = mkdtempSync(join(tmpdir(), "sugarcubes-release-"));
     writeFileSync(
       join(rootPath, "package.json"),
-      `${JSON.stringify({ name: "comfyui-sugarcubes", version: "0.9.0" }, null, 2)}\n`,
+      `${JSON.stringify({ name: "SugarCubes", version: "0.9.0" }, null, 2)}\n`,
       "utf8",
     );
     writeFileSync(
       join(rootPath, "package-lock.json"),
       `${JSON.stringify(
         {
-          name: "comfyui-sugarcubes",
+          name: "SugarCubes",
           version: "0.9.0",
-          packages: { "": { name: "comfyui-sugarcubes", version: "0.9.0" } },
+          packages: { "": { name: "SugarCubes", version: "0.9.0" } },
         },
         null,
         2,

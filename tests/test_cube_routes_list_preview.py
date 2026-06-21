@@ -21,7 +21,6 @@ from sugarcubes.backend.routes import build_route_handlers
 
 from conftest import FakeRequest, claim_github_owner, decode_json_response
 
-
 CANONICAL_GITHUB_CUBE_ID = "Artificial-Sweetener/Base-Cubes/demo.cube"
 
 

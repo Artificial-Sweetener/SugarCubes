@@ -26,7 +26,6 @@ from conftest import (
     ensure_tracked_repo,
 )
 
-
 CANONICAL_CUBE_ID = "artificial-sweetener/base-cubes/demo.cube"
 OTHER_CUBE_ID = "artificial-sweetener/base-cubes/other.cube"
 SDXL_CUBE_ID = "artificial-sweetener/base-cubes/SDXL/demo.cube"

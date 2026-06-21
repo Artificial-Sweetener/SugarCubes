@@ -46,9 +46,7 @@ _SEMVER_RE = re.compile(r"^\d+(?:\.\d+){1,3}(?:[-+][0-9A-Za-z.-]+)?$")
 _GIT_SHA_RE = re.compile(r"^[0-9a-fA-F]{7,40}$")
 _EXCLUDED_CUSTOM_NODE_SLUGS = frozenset({"websocket_image_save"})
 _BUILT_IN_CUSTOM_NODE_IDS = frozenset({"comfy-core"})
-_SUGARCUBES_CUSTOM_NODE_IDS = frozenset(
-    {"sugarcubes", "comfyui-sugarcubes", "comfyui_sugarcubes"}
-)
+_SUGARCUBES_CUSTOM_NODE_IDS = frozenset({"sugarcubes"})
 _SUGARCUBES_MARKER_MODULES = frozenset({"nodes", "payloads"})
 
 
