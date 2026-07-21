@@ -13,34 +13,14 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-"""Public SugarCubes host API registry tests."""
+"""Own paths derived from the installed SugarCubes extension layout."""
 
 from __future__ import annotations
 
 from pathlib import Path
-from .typing_support import BackendServicesFactory
-
-from sugarcubes.host_api import (
-    HOST_API_VERSION,
-    active_backend_services,
-    set_active_backend_services,
-)
 
 
-def test_active_backend_services_returns_registered_service_graph(
-    tmp_path: Path,
-    backend_services_factory: BackendServicesFactory,
-) -> None:
-    """Host adapters should retrieve the same service graph Comfy registered."""
+def extension_root() -> Path:
+    """Return the directory ComfyUI installed as the SugarCubes extension."""
 
-    services = backend_services_factory(tmp_path)
-
-    set_active_backend_services(services)
-
-    assert active_backend_services() is services
-
-
-def test_host_api_exposes_a_versioned_public_contract() -> None:
-    """Cross-extension consumers should negotiate one explicit API version."""
-
-    assert HOST_API_VERSION == 1
+    return Path(__file__).resolve().parent.parent
